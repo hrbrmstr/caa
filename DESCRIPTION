@@ -5,10 +5,12 @@ Version: 0.1.0
 Date: 2020-03-06
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
-           comment = c(ORCID = "0000-0001-5670-2640"))
+           comment = c(ORCID = "0000-0001-5670-2640")),
+    person("Romain", "Francois", role = "ctb", comment = "Original researcher.")
   )
 Maintainer: Bob Rudis <bob@rud.is>
-Description: Experimental R wrapper for the Go dnscall library.
+Description: Experimental R wrapper for the Go dnscall library. Builds off of work done by 
+    Romain Francois (<https://github.com/rstats-go/gotest>).
 URL: https://gitlab.com/hrbrmstr/caa
 BugReports: https://gitlab.com/hrbrmstr/caa/issues
 Encoding: UTF-8

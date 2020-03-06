@@ -10,7 +10,7 @@ by](https://img.shields.io/badge/Keybase-Verified-brightgreen.svg)](https://keyb
 Status](https://travis-ci.org/hrbrmstr/caa.svg?branch=master)](https://travis-ci.org/hrbrmstr/caa)  
 ![Minimal R
 Version](https://img.shields.io/badge/R%3E%3D-3.2.0-blue.svg)
-![License](https://img.shields.io/badge/License-AGPL-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 # caa
 
@@ -18,7 +18,8 @@ R Wrapper for the Go dnscaa Library
 
 ## Description
 
-Experimental R wrapper for the Go dnscall library.
+Experimental R wrapper for the Go dnscall library. Builds off of work
+done by Romain Francois (<https://github.com/rstats-go/gotest>).
 
 ## What’s Inside The Tin
 
@@ -29,7 +30,11 @@ The following functions are implemented:
 ## Installation
 
 ``` r
+remotes::install_git("https://git.rud.is/hrbrmstr/caa.git")
+# or
 remotes::install_gitlab("hrbrmstr/caa")
+# or
+remotes::install_github("hrbrmstr/caa")
 ```
 
 NOTE: To use the ‘remotes’ install options you will need to have the
