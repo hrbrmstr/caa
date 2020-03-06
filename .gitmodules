@@ -1,0 +1,15 @@
+[submodule "src/go/src/golang.org/x/crypto"]
+	path = src/go/src/golang.org/x/crypto
+	url = https://go.googlesource.com/crypto
+[submodule "src/go/src/golang.org/x/net"]
+	path = src/go/src/golang.org/x/net
+	url = https://go.googlesource.com/net
+[submodule "src/go/src/golang.org/x/sys"]
+	path = src/go/src/golang.org/x/sys
+	url = https://go.googlesource.com/sys
+[submodule "src/go/src/github.com/miekg/dns"]
+	path = src/go/src/github.com/miekg/dns
+	url = https://github.com/miekg/dns
+[submodule "src/go/src/github.com/weppos/dnscaa"]
+	path = src/go/src/github.com/weppos/dnscaa
+	url = https://github.com/weppos/dnscaa

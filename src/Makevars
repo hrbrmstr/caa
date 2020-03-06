@@ -1,0 +1,12 @@
+.PHONY: go
+
+CC = clang -Qunused-arguments
+CXX = clang++ -Qunused-arguments
+CGO_CFLAGS = "$(ALL_CPPFLAGS)"
+CGO_LDFLAGS = "$(PKG_LIBS) $(SHLIB_LIBADD) $(LIBR)"
+GOPATH = $(CURDIR)/go
+
+go:
+	rm -f caa.h
+	CGO_CFLAGS=$(CGO_CFLAGS) CGO_LDFLAGS=$(CGO_LDFLAGS) GOPATH=$(GOPATH) go build -o $(SHLIB) -x -buildmode=c-shared main
+

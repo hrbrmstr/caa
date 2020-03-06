@@ -1,0 +1,22 @@
+Package: caa
+Type: Package
+Title: R Wrapper for the Go dnscaa Library
+Version: 0.1.0
+Date: 2020-03-06
+Authors@R: c(
+    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0001-5670-2640"))
+  )
+Maintainer: Bob Rudis <bob@rud.is>
+Description: Experimental R wrapper for the Go dnscall library.
+URL: https://gitlab.com/hrbrmstr/caa
+BugReports: https://gitlab.com/hrbrmstr/caa/issues
+Encoding: UTF-8
+License: AGPL
+SystemRequirements: go, GNU make
+Suggests: 
+    covr, tinytest
+Depends: 
+    R (>= 3.2.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.2
