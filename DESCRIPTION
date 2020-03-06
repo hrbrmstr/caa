@@ -12,7 +12,7 @@ Description: Experimental R wrapper for the Go dnscall library.
 URL: https://gitlab.com/hrbrmstr/caa
 BugReports: https://gitlab.com/hrbrmstr/caa/issues
 Encoding: UTF-8
-License: AGPL
+License: MIT + file LICENSE
 SystemRequirements: go, GNU make
 Suggests: 
     covr, tinytest
