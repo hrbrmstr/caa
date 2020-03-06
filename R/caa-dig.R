@@ -1,4 +1,4 @@
-#' Retrieve the first CAA issuer value for a domain (if any)
+#' Retrieve the CAA record values for a domain (if any)
 #'
 #' @param x domain name
 #' @export

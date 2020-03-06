@@ -2,7 +2,7 @@
 % Please edit documentation in R/caa-dig.R
 \name{caa_dig}
 \alias{caa_dig}
-\title{Retrieve the first CAA issuer value for a domain (if any)}
+\title{Retrieve the CAA record values for a domain (if any)}
 \usage{
 caa_dig(x)
 }
@@ -10,7 +10,7 @@ caa_dig(x)
 \item{x}{domain name}
 }
 \description{
-Retrieve the first CAA issuer value for a domain (if any)
+Retrieve the CAA record values for a domain (if any)
 }
 \examples{
 caa_dig("google.com")

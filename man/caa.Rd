@@ -11,8 +11,8 @@ Experimental R wrapper for the Go dnscaa library.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://gitlab.com/hrbrmstr/caa}
-  \item Report bugs at \url{https://gitlab.com/hrbrmstr/caa/issues}
+  \item \url{https://git.rud.is/hrbrmstr/caa}
+  \item Report bugs at \url{https://git.rud.is/hrbrmstr/caa/issues}
 }
 
 }

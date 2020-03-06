@@ -19,6 +19,14 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
+#line 3 "main.go"
+
+  #define USE_RINTERNALS
+  #include <R.h>
+  #include <Rinternals.h>
+
+
+#line 1 "cgo-generated-wrapper"
 
 
 /* End of preamble from import "C" comments.  */
@@ -69,7 +77,7 @@ extern "C" {
 #endif
 
 
-extern char* caa_dig(GoString p0);
+extern char** caa_dig(GoString p0, int* p1);
 
 #ifdef __cplusplus
 }

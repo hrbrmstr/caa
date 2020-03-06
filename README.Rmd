@@ -41,6 +41,8 @@ packageVersion("caa")
 
 ```{r ex-1}
 caa_dig("google.com")
+
+caa_dig("www.comodo.com")
 ```
 
 ## caa Metrics

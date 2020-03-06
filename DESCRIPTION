@@ -11,8 +11,8 @@ Authors@R: c(
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Experimental R wrapper for the Go dnscall library. Builds off of work done by 
     Romain Francois (<https://github.com/rstats-go/gotest>).
-URL: https://gitlab.com/hrbrmstr/caa
-BugReports: https://gitlab.com/hrbrmstr/caa/issues
+URL: https://git.rud.is/hrbrmstr/caa
+BugReports: https://git.rud.is/hrbrmstr/caa/issues
 Encoding: UTF-8
 License: MIT + file LICENSE
 SystemRequirements: go, GNU make
