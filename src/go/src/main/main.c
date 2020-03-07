@@ -7,24 +7,43 @@
 
 #define SHORT_VEC_LENGTH(x) (((VECSEXP) (x))->vecsxp.length)
 
-SEXP R_caa_dig(SEXP x) {
+SEXP MakeDF(int n, char** tag, char** val) {
 
-  SEXP sx = STRING_ELT(x, 0);
+  if (val != NULL) {
 
-  GoString h = { (char*) CHAR(sx), SHORT_VEC_LENGTH(sx) };
-
-  int n = 0;
-  char **res = caa_dig(h, &n);
-
-  if (res != NULL) {
-
-    SEXP out = PROTECT(allocVector(STRSXP, n));
+    SEXP value_vec = PROTECT(allocVector(STRSXP, n));
     for (int i=0; i<n; i++) {
-      SET_STRING_ELT(out, i, mkChar(res[i]));
+      SET_STRING_ELT(value_vec, i, mkChar(val[i]));
+      free(val[i]); // allocated on heap on the Go side
     }
-    UNPROTECT(1);
 
-    free(res);
+    SEXP tag_vec = PROTECT(allocVector(STRSXP, n));
+    for (int i=0; i<n; i++) {
+      SET_STRING_ELT(tag_vec, i, mkChar(tag[i]));
+      free(tag[i]); // allocated on heap on the Go side
+    }
+
+    // make column names
+    SEXP colnames = PROTECT(allocVector(STRSXP, 2));
+    SET_STRING_ELT(colnames, 0, mkChar("tag"));
+    SET_STRING_ELT(colnames, 1, mkChar("value"));
+
+    // make row names
+    SEXP rownames = PROTECT(allocVector(INTSXP, 2));
+    INTEGER(rownames)[0] = NA_INTEGER;
+    INTEGER(rownames)[1] = -n;
+
+    // the data frame (finally)
+    SEXP out = PROTECT(allocVector(VECSXP, 2));
+    setAttrib(out, R_ClassSymbol, ScalarString(mkChar("data.frame")));
+
+    SET_VECTOR_ELT(out, 0, tag_vec);
+    SET_VECTOR_ELT(out, 1, value_vec);
+
+    setAttrib(out, R_RowNamesSymbol, rownames);
+    setAttrib(out, R_NamesSymbol, colnames);
+
+    UNPROTECT(5);
 
     return(out);
 
@@ -34,26 +53,14 @@ SEXP R_caa_dig(SEXP x) {
 
 }
 
-//SEXP R_caa_dig(SEXP x) {
-//
-//  SEXP sx = STRING_ELT(x, 0);
-//  GoString h = { (char*) CHAR(sx), SHORT_VEC_LENGTH(sx) };
-//
-//  char *res = caa_dig(h);
-//
-//  if (res != NULL) {
-//
-//    SEXP out = PROTECT(allocVector(STRSXP, 1));
-//    SET_STRING_ELT(out, 0, mkChar(res));
-//    UNPROTECT(1);
-//
-//    free(res);
-//
-//    return(out);
-//
-//  } else {
-//    return(R_NilValue);
-//  }
-//
-//}
-//
+SEXP R_caa_dig(SEXP x) {
+
+  SEXP sx = STRING_ELT(x, 0);
+
+  GoString h = { (char*) CHAR(sx), SHORT_VEC_LENGTH(sx) };
+
+  SEXP out = caa_dig(h);
+
+  return(out);
+
+}

@@ -40,9 +40,14 @@ packageVersion("caa")
 ```
 
 ```{r ex-1}
+# one record
 caa_dig("google.com")
 
+# multiple
 caa_dig("www.comodo.com")
+
+# none (lookup error)
+caa_dig("www.comodo.comm")
 ```
 
 ## caa Metrics

@@ -9,9 +9,19 @@ caa_dig(x)
 \arguments{
 \item{x}{domain name}
 }
+\value{
+data frame (tibble)
+}
 \description{
 Retrieve the CAA record values for a domain (if any)
 }
 \examples{
+# one record back
 caa_dig("google.com")
+
+# multiple
+caa::caa_dig("www.comodo.com")
+
+# none (lookup error)
+caa::caa_dig("www.comodo.comm")
 }

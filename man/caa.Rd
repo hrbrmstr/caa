@@ -6,7 +6,8 @@
 \alias{caa-package}
 \title{R Wrapper for the Go dnscaa Library}
 \description{
-Experimental R wrapper for the Go dnscaa library.
+Experimental R wrapper for the Go dnscall library. Builds off of work done by
+Romain Francois (\url{https://github.com/rstats-go})
 }
 \seealso{
 Useful links:

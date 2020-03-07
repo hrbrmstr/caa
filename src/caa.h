@@ -25,6 +25,8 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
   #include <R.h>
   #include <Rinternals.h>
 
+  SEXP MakeDF(int n, char** tag, char** val);
+
 
 #line 1 "cgo-generated-wrapper"
 
@@ -77,7 +79,7 @@ extern "C" {
 #endif
 
 
-extern char** caa_dig(GoString p0, int* p1);
+extern SEXP caa_dig(GoString p0);
 
 #ifdef __cplusplus
 }

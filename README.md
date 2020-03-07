@@ -19,7 +19,7 @@ R Wrapper for the Go dnscaa Library
 ## Description
 
 Experimental R wrapper for the Go dnscall library. Builds off of work
-done by Romain Francois (<https://github.com/rstats-go/gotest>).
+done by Romain Francois (<https://github.com/rstats-go>).
 
 ## What’s Inside The Tin
 
@@ -51,30 +51,45 @@ packageVersion("caa")
 ```
 
 ``` r
+# one record
 caa_dig("google.com")
-## [1] "pki.goog"
+## # A tibble: 1 x 2
+##   tag   value   
+##   <chr> <chr>   
+## 1 issue pki.goog
 
+# multiple
 caa_dig("www.comodo.com")
-## [1] "digicert.com"                 "mailto:sslabuse@comodoca.com" "comodoca.com"
+## # A tibble: 3 x 2
+##   tag   value                       
+##   <chr> <chr>                       
+## 1 issue digicert.com                
+## 2 iodef mailto:sslabuse@comodoca.com
+## 3 issue comodoca.com
+
+# none (lookup error)
+caa_dig("www.comodo.comm")
+## # A tibble: 0 x 2
+## # … with 2 variables: tag <chr>, value <chr>
 ```
 
 ## caa Metrics
 
 | Lang               | \# Files |  (%) |    LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
 | :----------------- | -------: | ---: | -----: | ---: | ----------: | ---: | -------: | ---: |
-| Go                 |     1293 | 0.92 | 374709 | 0.95 |       40514 | 0.95 |    39884 | 0.95 |
+| Go                 |     1293 | 0.92 | 374722 | 0.95 |       40522 | 0.95 |    39892 | 0.95 |
 | Assembly           |       69 | 0.05 |  10426 | 0.03 |        1258 | 0.03 |     1424 | 0.03 |
 | XML                |        1 | 0.00 |   4780 | 0.01 |         228 | 0.01 |       13 | 0.00 |
 | HTML               |       10 | 0.01 |   2214 | 0.01 |         441 | 0.01 |       16 | 0.00 |
 | Bourne Shell       |        5 | 0.00 |    798 | 0.00 |         113 | 0.00 |      429 | 0.01 |
-| C                  |        6 | 0.00 |    332 | 0.00 |         103 | 0.00 |      100 | 0.00 |
+| C                  |        6 | 0.00 |    351 | 0.00 |         111 | 0.00 |       80 | 0.00 |
 | Dockerfile         |        3 | 0.00 |     91 | 0.00 |          27 | 0.00 |       23 | 0.00 |
 | Bourne Again Shell |        2 | 0.00 |     72 | 0.00 |          12 | 0.00 |        6 | 0.00 |
-| C/C++ Header       |        1 | 0.00 |     47 | 0.00 |          27 | 0.00 |       10 | 0.00 |
+| C/C++ Header       |        1 | 0.00 |     48 | 0.00 |          28 | 0.00 |       10 | 0.00 |
 | YAML               |        2 | 0.00 |     45 | 0.00 |           0 | 0.00 |        0 | 0.00 |
 | make               |        2 | 0.00 |     25 | 0.00 |           7 | 0.00 |        4 | 0.00 |
-| Rmd                |        1 | 0.00 |     10 | 0.00 |          17 | 0.00 |       30 | 0.00 |
-| R                  |        3 | 0.00 |      7 | 0.00 |           2 | 0.00 |       15 | 0.00 |
+| R                  |        3 | 0.00 |     15 | 0.00 |           8 | 0.00 |       25 | 0.00 |
+| Rmd                |        1 | 0.00 |     11 | 0.00 |          18 | 0.00 |       33 | 0.00 |
 
 ## Code of Conduct
 
