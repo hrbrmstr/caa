@@ -8,5 +8,5 @@
 #' @importFrom tibble as_tibble
 #' @keywords internal
 #' @author Bob Rudis (bob@@rud.is)
-#' @useDynLib caa
+#' @useDynLib caa, .registration = TRUE
 "_PACKAGE"

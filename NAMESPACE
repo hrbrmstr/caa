@@ -2,4 +2,4 @@
 
 export(caa_dig)
 importFrom(tibble,as_tibble)
-useDynLib(caa)
+useDynLib(caa, .registration = TRUE)

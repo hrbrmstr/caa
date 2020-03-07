@@ -56,9 +56,10 @@ func caa_dig(hostname string) C.SEXP {
     }
 
     // how many things
-    n := C.int(len(val))
+    n := C.int(len(val)) // don't need to free https://blog.golang.org/c-go-cgo
 
     // clean up after calling the data frame maker
+
     defer C.free(unsafe.Pointer(val_arr))
     defer C.free(unsafe.Pointer(tag_arr))
 

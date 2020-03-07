@@ -1,11 +1,11 @@
 #include "_cgo_export.h"
 
+#include <R_ext/Rdynload.h>
+
 #include <stdlib.h>
 #include <string.h>
 
-// define R bridge functions here
-
-#define SHORT_VEC_LENGTH(x) (((VECSEXP) (x))->vecsxp.length)
+// This gets called from Go and returns a data frame
 
 SEXP MakeDF(int n, char** tag, char** val) {
 
@@ -53,14 +53,31 @@ SEXP MakeDF(int n, char** tag, char** val) {
 
 }
 
+// The thing we're going to call from a .R file
+// It calls the Go `caa_dig()` function which, in turn, calls MakeDF() above
+
 SEXP R_caa_dig(SEXP x) {
 
   SEXP sx = STRING_ELT(x, 0);
 
-  GoString h = { (char*) CHAR(sx), SHORT_VEC_LENGTH(sx) };
+  GoString h = { (char*) CHAR(sx), Rf_xlength(sx) };
 
   SEXP out = caa_dig(h);
 
   return(out);
 
 }
+
+// Required "registration" code by CRAN
+
+static const R_CallMethodDef CallEntries[] = {
+  {"R_caa_dig", (DL_FUNC) &R_caa_dig,        1},
+  {NULL, NULL, 0}
+};
+
+void R_init_caa(DllInfo *dll) {
+  R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+  R_useDynamicSymbols(dll, FALSE);
+}
+
+

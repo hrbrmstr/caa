@@ -6,7 +6,9 @@ Date: 2020-03-06
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
            comment = c(ORCID = "0000-0001-5670-2640")),
-    person("Romain", "Francois", role = "ctb", comment = "Original researcher.")
+    person("Romain", "Francois", role = "ctb", comment = "Original Go-R interface research"),
+    person("Simone", "Carletti", role = "ctb", comment = "dnscaa Go library https://github.com/weppos/dnscaa"),
+    person("Miek", "Gieben", role = "ctb", comment = "dns Go library https://github.com/miekg/dns")
   )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Experimental R wrapper for the Go dnscall library. Builds off of work done by 

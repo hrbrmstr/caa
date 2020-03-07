@@ -20,3 +20,8 @@
 ^appveyor\.yml$
 ^tools$
 ^LICENSE\.md$
+dnscaa\.a$
+\.codecov\.yml$
+\.travis\.yml$
+src/go/pkg$
+src/go/src/golang\.org/x/crypto/sha3/testdata$

@@ -23,6 +23,44 @@ The following functions are implemented:
 hrbrpkghelpr::describe_ingredients()
 ```
 
+## WAT?!
+
+Grabbing & parsing DNS CAA records isn't the actual purpose of this pkg/repo. Romain did a fantastic job cracking the Go nut for R, but not many R packages seem to be based on using Go (C, Rcpp, Fortran, and even Rust seems to be more en vogue) and the existing examples work with basic types.
+
+This package uses Go libraries and makes a data frame from the results of Go-side network queries for DNS CAA records. It relies 100% on Go for networking and DNS record parsing, which only leaves getting the results back into R.
+
+`main.go` contains some useful idioms, such as the comment block at the top right before the first `import` which makes "unsafe" C things there available to Go (so we get `SEXP`!) Midway down Go String slices are turned into C-compatible character arrays, along with the code to free up those bits of heap memory at the end (`defer`s). We use the external reference to `MakeDF()` (`C.MakeDF()`) in `main.c` to make the `SEXP` data frame we're returning. We could have tried to keep that in Go but it's cleaner (IMO) to just let C do the work. NOTE that it's important to use `free()` on each element of the 2D (`char **`) character array on the C side since they were allocated on the heap on the Go side and Go's memory manager won't auto-free those for you.
+
+`main.go` also has:
+
+```{go eval=FALSE}
+func init() {
+  log.SetOutput(ioutil.Discard)
+}
+```
+
+in it to stop modules that use the Go logger from outputting things (Go programmers tend to be "systems programmers" and, as a result, log the heck out of everything).
+
+Also on the C side is the `R_caa_dig()` function which we `.Call()` from the R side (along with the package registration code for it). Given that I had to stick a `.c` file in `src/` I'll eventually (likely) modify the `Makefile` and put the required R registration code there.
+
+The `.Rbuildignore` removes some Go module repository cruft.
+
+Ultimately, it still does not pass CRAN checks. The lib dir is YUGE, `cgo`'s preferred/required compilation settings are against the CRAN rules, and the requirement for GNU Make is also somewhat verbotten. However, a package check with CRAN checks enabled only results in 1 warning and 2 notes (on macOS). 
+
+For this particular package, the `dnscaa` Go library had a call to `fmt.Println()` in `dnscaa.go` when there was an NXDOMAIN result which I had to turn into `log.Println()`. Unfortunately, the way `go get` works with git repos, they're submodules, so those changes will get overwritten and you'll have to add them manuall (keep them as git submodules so you can more easily update the underlying libraries if need be).
+
+As a result of ^^ you'll need to do this to clone this repo effectively:
+
+```
+$ git clone --recurse-submodules -j8 ssh://git@git.rud.is:7777/hrbrmstr/caa.git
+```
+
+Replace `git clone --recurse-submodules -j8 ssh://git@git.rud.is:7777/hrbrmstr/caa.git` with the `https` or `ssh` URL of where you're viewing this and have access.
+
+There are comments peppered throughout `main.go` and especially `main.c`, but if anything needs clarification, drop an issue. 
+
+This is my first time through the `cgo` interface (Go itself is straightforward, `cgo` has lots of gotchas), so if I missed anything there def lemme know.
+
 ## Installation
 
 ```{r install-ex, results='asis', echo=FALSE, cache=FALSE}
